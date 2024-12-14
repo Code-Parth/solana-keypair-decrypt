@@ -1,5 +1,6 @@
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Script from "next/script";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Header from "@/components/common/header";
@@ -20,7 +21,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
     title: "Decrypt Solana Keypair",
-    description: "",
+    description: "Solana Keypair Decryptor is a secure, client-side web application designed to help you generate and convert Solana wallet keypairs easily and safely. With a user-friendly interface, you can generate new keypairs or convert existing private keys between different formats.",
 };
 
 export default function RootLayout({
@@ -30,6 +31,20 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                {/* google Analytics */}
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-STJSQYCPW6"></Script>
+                <Script id="google-analytics">
+                    {
+                        `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-STJSQYCPW6');
+                        `
+                    }
+                </Script>
+            </head>
             <body className={cn(geistSans.variable, geistMono.variable, "antialiased select-none")}>
                 <ThemeProvider
                     enableSystem
