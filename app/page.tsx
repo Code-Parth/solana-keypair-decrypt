@@ -15,6 +15,7 @@ export default function WalletConverter() {
     const [walletInfo, setWalletInfo] = useState<{
         publicKey?: string;
         privateKey?: string;
+        privateKeyArray?: string;
         balance?: string;
     }>({});
     const [error, setError] = useState("");
@@ -23,10 +24,12 @@ export default function WalletConverter() {
         const keypair = Keypair.generate();
         const publicKey = keypair.publicKey.toBase58();
         const privateKey = base58.encode(keypair.secretKey);
+        const privateKeyArray = JSON.stringify(Array.from(keypair.secretKey));
 
         setWalletInfo({
             publicKey,
-            privateKey
+            privateKey,
+            privateKeyArray
         });
         setKeypairInput("");
         setError("");
@@ -49,10 +52,12 @@ export default function WalletConverter() {
 
             const publicKey = keypair.publicKey.toBase58();
             const privateKey = base58.encode(keypair.secretKey);
+            const privateKeyArray = JSON.stringify(Array.from(keypair.secretKey));
 
             setWalletInfo({
                 publicKey,
-                privateKey
+                privateKey,
+                privateKeyArray
             });
             setError("");
         } catch (err) {
@@ -85,16 +90,24 @@ export default function WalletConverter() {
                                     <div className="space-y-2">
                                         <Label>Public Key</Label>
                                         <Input
-                                            value={walletInfo.publicKey}
                                             readOnly
                                             className="w-full"
+                                            value={walletInfo.publicKey}
                                         />
 
-                                        <Label>Private Key</Label>
+                                        <Label>Private Key (Base58)</Label>
                                         <Textarea
-                                            value={walletInfo.privateKey}
                                             readOnly
                                             className="w-full"
+                                            value={walletInfo.privateKey}
+                                        />
+
+                                        <Label>Private Key (JSON Array)</Label>
+                                        <Textarea
+                                            rows={4}
+                                            readOnly
+                                            className="w-full"
+                                            value={walletInfo.privateKeyArray}
                                         />
                                     </div>
                                 )}
@@ -104,9 +117,9 @@ export default function WalletConverter() {
                         <TabsContent value="convert">
                             <div className="space-y-4">
                                 <Textarea
+                                    rows={4}
                                     className="w-full"
                                     value={keypairInput}
-                                    rows={4}
                                     onChange={(e) => setKeypairInput(e.target.value)}
                                     placeholder="Enter your private key (Base58 or JSON array)"
                                 />
@@ -130,11 +143,19 @@ export default function WalletConverter() {
                                             value={walletInfo.publicKey}
                                         />
 
-                                        <Label>Private Key</Label>
+                                        <Label>Private Key (Base58)</Label>
                                         <Textarea
                                             readOnly
                                             className="w-full"
                                             value={walletInfo.privateKey}
+                                        />
+
+                                        <Label>Private Key (JSON Array)</Label>
+                                        <Textarea
+                                            rows={4}
+                                            readOnly
+                                            className="w-full"
+                                            value={walletInfo.privateKeyArray}
                                         />
                                     </div>
                                 )}
