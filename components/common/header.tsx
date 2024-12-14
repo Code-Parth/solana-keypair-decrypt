@@ -12,7 +12,7 @@ export default function Header() {
                         <h1 className="text-2xl">Decrypt Solana Keypair</h1>
                     </Link>
 
-                    <div className="flex gap-2 items-center">
+                    <div className="flex space-x-4 items-center">
                         <div className="max-sm:hidden sm:hidden md:block lg:block xl:block 2xl:block">
                             <ThemeToggle />
                         </div>

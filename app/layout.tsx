@@ -34,7 +34,7 @@ export default function RootLayout({
                 <ThemeProvider
                     enableSystem
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="light"
                 >
                     <main className="flex flex-col justify-between min-h-screen">
                         <Header />
