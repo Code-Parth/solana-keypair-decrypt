@@ -194,7 +194,7 @@ export default function WalletConverter() {
                                 {walletInfo.publicKey && (
                                     <>
                                         <div className="space-y-2 relative">
-                                            <Label>Public Key</Label>
+                                            <Label className="font-semibold">Public Key</Label>
                                             <div className="relative">
                                                 <Textarea
                                                     rows={2}
@@ -205,7 +205,7 @@ export default function WalletConverter() {
                                                 {renderCopyButton(walletInfo.publicKey, 'publicKey')}
                                             </div>
 
-                                            <Label>Private Key (Base58)</Label>
+                                            <Label className="font-semibold">Private Key (Base58)</Label>
                                             <div className="relative">
                                                 <Textarea
                                                     rows={2}
@@ -216,7 +216,7 @@ export default function WalletConverter() {
                                                 {renderCopyButton(walletInfo.privateKey!, 'privateKey')}
                                             </div>
 
-                                            <Label>Private Key (JSON Array)</Label>
+                                            <Label className="font-semibold">Private Key (JSON Array)</Label>
                                             <div className="relative">
                                                 <Textarea
                                                     rows={4}
